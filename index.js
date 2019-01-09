@@ -53,11 +53,9 @@ function init(){
 function initLights() {
     var directionalLight, ambientLight, spotlight;
     directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
-    directionalLight.position.set(0, 50, 0);
+    directionalLight.position.set(0, 50, 50);
     //directionalLight.castShadow = true;
     scene.add(directionalLight);
-    ambientLight = new THREE.AmbientLight(0xFFFFFF);
-    scene.add(ambientLight);
     spotlight = new THREE.SpotLight(0xFFFFFF, 2, 100, Math.PI / 4, 1);
     // ライトに影を有効にする
     spotlight.castShadow = true;
@@ -75,8 +73,9 @@ function initTable(){
 function initBall(){
     let ball,geometry,material;
     geometry = new THREE.SphereGeometry(Ball_radius);
-    material = new THREE.MeshLambertMaterial({color: 0xFFFF00});
+    material = new THREE.MeshStandardMaterial({color: 0xFFFF00});
     ball = new THREE.Mesh(geometry,material);
+    ball.receiveShadow = true;
     Ball =  new shoot_ball(ball);
     Ball.body.position.set(0,Table_height/2+Ball_radius/2,0)
     scene.add(Ball.body);
